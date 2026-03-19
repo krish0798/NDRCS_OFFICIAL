@@ -1,0 +1,293 @@
+/* FRONTEND/css/global.css - Core variables and typography for a professional government portal */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  /* Colors */
+  --primary-navy: #0f2027; /* Darker, more serious navy */
+  --secondary-blue: #203a43;
+  --accent-blue: #2c5364;
+  --light-blue: #e0f2f1;
+  
+  --brand-gold: #c5a059; /* Official accent color */
+
+  --alert-red: #d32f2f;
+  --alert-red-light: #ffebee;
+  --warning-orange: #f57c00;
+  --success-green: #2e7d32;
+  --info-blue: #1976d2;
+  
+  --bg-color: #f4f6f8;
+  --surface-color: #ffffff;
+  --text-main: #1a1a1a;
+  --text-muted: #5f6368;
+  
+  --border-color: #e0e0e0;
+  
+  /* Tyopgraphy */
+  --font-heading: 'Roboto', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  
+  /* Spacing & Layout */
+  --border-radius: 6px;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0,0,0,0.05);
+  --box-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0,0,0,0.08);
+  --header-height: 72px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--primary-navy);
+  line-height: 1.2;
+}
+
+a {
+  text-decoration: none;
+  color: var(--info-blue);
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #0d47a1;
+}
+
+/* Button variants */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  font-family: var(--font-heading);
+  letter-spacing: 0.5px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+}
+
+.btn-primary {
+  background-color: var(--primary-navy);
+  color: #fff;
+}
+.btn-primary:hover {
+  background-color: var(--brand-gold);
+  color: var(--primary-navy);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.btn-danger {
+  background-color: var(--alert-red);
+  color: #fff;
+}
+.btn-danger:hover {
+  background-color: #b71c1c;
+  box-shadow: 0 4px 8px rgba(211, 47, 47, 0.3);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid var(--primary-navy);
+  color: var(--primary-navy);
+}
+.btn-outline:hover {
+  background-color: var(--primary-navy);
+  color: #fff;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+/* Navigation Formats */
+.ndrcs-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+  height: var(--header-height);
+  background-color: var(--primary-navy);
+  color: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 3px solid var(--brand-gold);
+}
+
+.brand-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.brand-logo {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.brand-title {
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  font-family: var(--font-heading);
+  color: var(--brand-gold);
+}
+
+.brand-subtitle {
+  font-size: 0.75rem;
+  color: #e0e0e0;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.nav-links a {
+  color: white;
+  font-weight: 500;
+  padding: 0.5rem 0;
+  font-size: 0.95rem;
+  position: relative;
+}
+
+.nav-links a:hover, .nav-links a.active {
+  color: var(--brand-gold);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--brand-gold);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after, .nav-links a.active::after {
+  width: 100%;
+}
+
+.nav-links .btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+}
+.nav-links .btn::after {
+  display: none; /* remove underline for buttons */
+}
+
+/* Emergency Strip */
+.emergency-strip {
+  background-color: var(--alert-red);
+  color: white;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.emergency-strip span {
+  font-weight: 900;
+  font-size: 1.1rem;
+  margin-left: 0.5rem;
+}
+
+.footer {
+  background-color: var(--primary-navy);
+  color: #b0bec5;
+  text-align: center;
+  padding: 3rem 2rem;
+  margin-top: auto;
+  font-size: 0.9rem;
+  border-top: 4px solid var(--brand-gold);
+}
+
+.footer p {
+  margin-bottom: 0.5rem;
+}
+
+.footer strong {
+  color: white;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Mobile Menu Icon */
+.mobile-menu-btn {
+  display: none; /* Hidden on desktop view */
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: white;
+}
+
+/* Responsiveness Core */
+@media (max-width: 768px) {
+  .ndrcs-nav {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 1rem;
+  }
+  
+  .brand-container {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  
+  .nav-links {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .emergency-strip {
+    font-size: 0.8rem;
+  }
+}
+
+/* --- LEAFLET GLOBAL MARKERS --- */
+.incident-marker {
+  background-color: var(--alert-red);
+  border: 2px solid white;
+  border-radius: 50% 50% 50% 0; /* Tear drop pinpoint shape */
+  transform: rotate(-45deg); 
+  box-shadow: -2px 2px 5px rgba(0,0,0,0.5);
+  margin-top: -12px !important;
+  margin-left: -12px !important;
+}
+
+.rescue-marker {
+  background-color: var(--info-blue);
+  border: 2px solid white;
+  border-radius: 50%; /* Solid blue dot */
+  box-shadow: 0 0 10px rgba(66, 165, 245, 0.8), inset 0 0 4px rgba(255,255,255,0.8);
+  margin-top: -9px !important;
+  margin-left: -9px !important;
+}

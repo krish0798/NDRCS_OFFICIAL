@@ -1,0 +1,216 @@
+/* FRONTEND/css/citizen-home.css */
+
+.citizen-page {
+  background-color: var(--bg-color);
+}
+
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  min-height: calc(100vh - 150px);
+}
+
+.dashboard-header {
+  margin-bottom: 3rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.dashboard-header h1 {
+  font-size: 2.2rem;
+  color: var(--primary-navy);
+  margin-bottom: 0.5rem;
+}
+
+/* Quick Actions Grid */
+.quick-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+
+.action-card {
+  background: var(--surface-color);
+  padding: 2rem 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  border: 1px solid var(--border-color);
+  text-align: center;
+  transition: all 0.3s ease;
+  display: block;
+  text-decoration: none;
+  color: var(--text-main);
+  position: relative;
+  overflow: hidden;
+}
+
+.action-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+}
+
+.action-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--box-shadow-hover);
+}
+
+.action-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  color: var(--primary-navy);
+}
+
+.action-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.urgent-action::after { background-color: var(--alert-red); }
+.urgent-action:hover { border-color: #ffcdd2; background-color: #fffafb; }
+
+.standard-action::after { background-color: var(--brand-gold); }
+.standard-action:hover { border-color: var(--brand-gold); }
+
+.info-action::after { background-color: var(--info-blue); }
+.info-action:hover { border-color: #bbdefb; background-color: #f8fbff; }
+
+/* Split Layout */
+.content-split-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  color: var(--primary-navy);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--brand-gold);
+  display: inline-block;
+}
+
+/* Notices */
+.notices-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.notice-card {
+  background: var(--surface-color);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--info-blue);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.notice-card.critical-notice {
+  border-left-color: var(--alert-red);
+  background-color: #fffefe;
+}
+
+.notice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+.badge.red { background-color: #ffebee; color: #c62828; border: 1px solid #ffcdd2; }
+.badge.blue { background-color: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
+
+.notice-header .date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.notice-card h4 {
+  margin-bottom: 0.5rem;
+  color: var(--primary-navy);
+  font-size: 1.1rem;
+}
+
+/* Guidelines */
+.guideline-list {
+  list-style: none;
+  background: var(--surface-color);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.guideline-list li {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.95rem;
+  color: var(--text-main);
+}
+.guideline-list li:last-child {
+  border-bottom: none;
+}
+
+.guideline-list strong {
+  display: block;
+  color: var(--primary-navy);
+  margin-bottom: 0.25rem;
+  font-family: var(--font-heading);
+}
+
+/* Mobile Nav Toggles */
+.mobile-menu-btn {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .content-split-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .ndrcs-nav {
+    flex-wrap: nowrap;
+    position: relative;
+  }
+  
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--primary-navy);
+    flex-direction: column;
+    padding: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links a, .nav-links button {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 0.5rem;
+  }
+}

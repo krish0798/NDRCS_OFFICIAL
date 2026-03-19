@@ -1,0 +1,4 @@
+.vscode/
+BACKEND/ndrcs-backend/.env
+BACKEND/ndrcs-backend/application-local.properties
+BACKEND/ndrcs-backend/secret-notes.txt

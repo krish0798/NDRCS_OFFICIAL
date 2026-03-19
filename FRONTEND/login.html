@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Authentication - NDRCS</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body class="login-page-body">
+
+  <nav class="ndrcs-nav">
+    <div class="brand-container">
+      <div class="brand-text">
+        <div class="brand-title">NDRCS</div>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="map.html">Live Map</a>
+    </div>
+  </nav>
+
+  <main class="login-main">
+    <div class="auth-container">
+      
+      <div class="auth-header">
+        <div class="auth-seal">🏛️</div>
+        <h2>Portal Access</h2>
+        <p>Authorized personnel and registered citizens only.</p>
+      </div>
+
+      <div class="auth-box">
+        
+        <!-- Tabs -->
+        <div class="auth-tabs">
+          <button class="tab-btn active" data-target="section-citizen-login">Citizen Login</button>
+          <button class="tab-btn" data-target="section-citizen-signup">Citizen Signup</button>
+          <button class="tab-btn" data-target="section-control-room">Control Room</button>
+          <button class="tab-btn" data-target="section-rescue-team">Rescue Team</button>
+        </div>
+
+        <div id="alert-box" class="alert hidden"></div>
+
+        <!-- 1) Citizen Login Section -->
+        <div id="section-citizen-login" class="auth-section active">
+          <h3 class="section-title">Citizen Login</h3>
+          <form id="form-citizen-login" class="auth-form">
+            <div class="form-group">
+              <label for="citizenLoginId">User ID</label>
+              <input type="text" id="citizenLoginId" name="username" autocomplete="username" required placeholder="Enter your User ID">
+            </div>
+            <div class="form-group">
+              <label for="citizenLoginPass">Password</label>
+              <div class="password-wrapper">
+                <input type="password" id="citizenLoginPass" name="password" autocomplete="current-password" required placeholder="Enter your password">
+                <span class="toggle-password" data-toggle="citizenLoginPass" title="Toggle Password Visibility" style="display:flex; align-items:center; cursor:pointer;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #4b5563;"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                </span>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary w-100">Secure Login</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- 2) Citizen Signup Section -->
+        <div id="section-citizen-signup" class="auth-section hidden">
+          <h3 class="section-title">Citizen Registration</h3>
+          <p class="section-desc">Create a verified account to report critical incidents.</p>
+          <form id="form-citizen-signup" class="auth-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="signupFullName">Full Name *</label>
+                <input type="text" id="signupFullName" name="fullName" autocomplete="name" required placeholder="As per official documents">
+              </div>
+              <div class="form-group">
+                <label for="signupUserId">User ID *</label>
+                <input type="text" id="signupUserId" name="userId" required placeholder="Unique username">
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="signupEmail">Email Address *</label>
+                <input type="email" id="signupEmail" name="email" autocomplete="email" required placeholder="For verification">
+              </div>
+              <div class="form-group">
+                <label for="signupPhone">Phone Number *</label>
+                <input type="tel" id="signupPhone" name="phoneNumber" required placeholder="+91">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="signupAddress">Residential Address *</label>
+              <textarea id="signupAddress" name="address" required placeholder="Complete address for emergency context" rows="2"></textarea>
+            </div>
+            
+            <div class="form-group">
+              <label for="signupPassword">Password *</label>
+              <div class="password-wrapper">
+                <input type="password" id="signupPassword" name="password" autocomplete="new-password" required placeholder="Create a strong password">
+                <span class="toggle-password" data-toggle="signupPassword" title="Toggle Password Visibility" style="display:flex; align-items:center; cursor:pointer;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #4b5563;"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                </span>
+              </div>
+              <div id="pwStrengthText" style="font-size: 0.75rem; margin-top: 5px; font-weight: 600;"></div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary w-100">Register Account</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- 3) Citizen OTP Verification UI -->
+        <div id="section-citizen-otp" class="auth-section otp-section hidden">
+          <div class="otp-icon">✉️</div>
+          <h3 class="section-title text-center">Identity Verification</h3>
+          <p class="text-muted text-center" style="margin-bottom: 2rem;">A One-Time Password has been dispatched to your registered email address. Please input below to verify.</p>
+          <form id="form-citizen-otp" class="auth-form">
+            <div class="form-group">
+              <label for="otpUserId">User ID</label>
+              <input type="text" id="otpUserId" class="readonly-input" required readonly>
+            </div>
+            <div class="form-group">
+              <label for="otpCode">6-Digit Security Code</label>
+              <input type="text" id="otpCode" class="otp-input" required placeholder="• • • • • •" maxlength="6">
+            </div>
+            <div class="form-actions" style="margin-top: 2rem;">
+              <button type="submit" class="btn btn-success w-100">Verify Identity</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- 4) Control Room Login Section -->
+        <div id="section-control-room" class="auth-section admin-section hidden">
+          <h3 class="section-title">Control Room Access</h3>
+          <p class="section-desc text-danger">RESTRICTED GOVERNMENT ACCESS</p>
+          <form id="form-control-login" class="auth-form">
+            <div class="form-group">
+              <label for="controlLoginId">Admin Credential ID</label>
+              <input type="text" id="controlLoginId" required placeholder="e.g. CR_MUM_01">
+            </div>
+            <div class="form-group">
+              <label for="controlLoginPass">Admin Passphrase</label>
+              <div class="password-wrapper">
+                <input type="password" id="controlLoginPass" autocomplete="current-password" required>
+                <span class="toggle-password" data-toggle="controlLoginPass" title="Toggle Password Visibility" style="display:flex; align-items:center; cursor:pointer;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #4b5563;"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                </span>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-danger w-100">Authenticate Control System</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- 5) Rescue Team Login Section -->
+        <div id="section-rescue-team" class="auth-section admin-section hidden">
+          <h3 class="section-title">Rescue Team Dispatch Access</h3>
+          <p class="section-desc" style="color: var(--accent-blue); font-weight: 500;">Field Operatives Portal</p>
+          <form id="form-rescue-login" class="auth-form">
+            <div class="form-group">
+              <label for="rescueLoginId">Squad ID</label>
+              <input type="text" id="rescueLoginId" required placeholder="e.g. ALPHA_SQUAD">
+            </div>
+            <div class="form-group">
+              <label for="rescueLoginPass">Verification Code</label>
+              <div class="password-wrapper">
+                <input type="password" id="rescueLoginPass" autocomplete="current-password" required>
+                <span class="toggle-password" data-toggle="rescueLoginPass" title="Toggle Password Visibility" style="display:flex; align-items:center; cursor:pointer;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #4b5563;"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                </span>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary w-100">Initialize Field Dashboard</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Command Control - NDRCS</title>
+  
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/control-dashboard.css">
+</head>
+<body class="control-page-body">
+
+  <nav class="ndrcs-nav control-nav">
+    <div class="brand-container">
+      <div class="brand-logo">🛡️</div>
+      <div class="brand-text">
+        <div class="brand-title">NDRCS <span class="nav-span">Control Room</span></div>
+      </div>
+    </div>
+    
+    <div class="nav-system-status">
+      <span class="status-dot green"></span>
+      <span id="navSyncTime">SYNC: 00:00:00</span>
+    </div>
+
+    <div class="nav-links">
+      <button id="logoutBtn" class="btn btn-danger btn-sm">Terminate Session</button>
+    </div>
+  </nav>
+
+  <!-- Top Metrics Bar -->
+  <div class="metrics-bar">
+    <div class="metric-card">
+      <div class="metric-title">TOTAL INCIDENTS</div>
+      <div class="metric-value text-red" id="metricTotal">0</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-title">ASSIGNED RESOURCES</div>
+      <div class="metric-value text-gold" id="metricAssigned">0</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-title">ACTIVE FIELD TEAMS</div>
+      <div class="metric-value text-blue" id="metricTeams">0</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-title">RESOLVED SECURE</div>
+      <div class="metric-value text-green" id="metricResolved">0</div>
+    </div>
+  </div>
+
+  <main class="control-grid">
+    
+    <!-- Left Column: Operations Map -->
+    <section class="panel-map-container">
+      <div class="panel-header">
+        LEAFLET LIVE GEOSPATIAL MAP
+      </div>
+      <div id="controlMap" class="control-map"></div>
+    </section>
+
+    <!-- Center Column: Incident & Assignment -->
+    <section class="panel-dispatch-container">
+      
+      <!-- Incident List -->
+      <div class="sub-panel incident-list-panel">
+        <div class="panel-header">
+          ACTIVE INCIDENTS QUEUE
+        </div>
+        <div class="panel-body list-body" id="incidentListTarget">
+          <div class="loader-text">Awaiting Telemetry...</div>
+        </div>
+      </div>
+
+      <!-- Assignment Console -->
+      <div class="sub-panel dispatch-form-panel">
+        <div class="panel-header">
+          DISPATCH & ASSIGNMENT CONSOLE
+        </div>
+        <div class="panel-body form-body">
+          <form id="dispatchForm">
+            <div id="dispatchAlert" class="alert hidden" style="margin: 0 0 1rem 0; padding: 0.5rem; font-size: 0.8rem;"></div>
+
+            <div class="form-group">
+              <label>Target Incident ID *</label>
+              <select id="assignIncidentId" class="control-input" required>
+                <option value="">Select Incident from Queue</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Target Rescue Team ID *</label>
+              <select id="assignTeamId" class="control-input" required>
+                <option value="">Select Available Squad</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100" style="margin-top: 1rem;">EXECUTE DISPATCH ASSIGNMENT</button>
+          </form>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Right Column: Communications -->
+    <section class="panel-comms-container">
+      
+      <!-- Inbox / Incoming Messages -->
+      <div class="sub-panel inbox-panel">
+        <div class="panel-header">
+          INCOMING FIELD COMMUNICATIONS
+        </div>
+        <div class="panel-body list-body" id="inboxTarget">
+          <div class="loader-text">No pending messages.</div>
+        </div>
+      </div>
+
+      <!-- Outbox / Send Message -->
+      <div class="sub-panel transmit-panel">
+        <div class="panel-header">
+          TRANSMIT SECURE MESSAGE
+        </div>
+        <div class="panel-body form-body">
+          <form id="transmitForm">
+            <div id="transmitAlert" class="alert hidden" style="margin: 0 0 1rem 0; padding: 0.5rem; font-size: 0.8rem;"></div>
+
+            <div class="form-group">
+              <label>Recipient Squad *</label>
+              <select id="transmitTarget" class="control-input" required>
+                <option value="">Select Rescue Squad</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label>Message Payload *</label>
+              <textarea id="transmitContent" class="control-input" rows="3" placeholder="Enter directive..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-outline w-100" style="color:var(--brand-gold); border-color:var(--brand-gold); margin-top:0.5rem;">TRANSMIT DIRECTIVE</button>
+          </form>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/control-dashboard.js"></script>
+</body>
+</html>

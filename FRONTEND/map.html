@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Map - NDRCS</title>
+  
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  
+  <!-- Local CSS -->
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/map.css">
+</head>
+<body class="map-page-body">
+
+  <nav class="ndrcs-nav map-nav">
+    <div class="brand-container">
+      <div class="brand-logo">📍</div>
+      <div class="brand-text">
+        <div class="brand-title">NDRCS <span style="font-weight:400">Map Terminal</span></div>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Exit to Home</a>
+      <button id="logoutBtn" class="btn btn-danger hidden" style="padding: 0.4rem 1rem; font-size: 0.8rem;">Terminate Session</button>
+      <a id="loginBtn" href="login.html" class="btn btn-outline" style="color:white; border-color:white; padding: 0.4rem 1rem; font-size: 0.8rem;">Portal Login</a>
+    </div>
+  </nav>
+
+  <main class="map-layout">
+    
+    <div class="map-sidebar">
+      <div class="sidebar-header">
+        <h2>Operations Panel</h2>
+        <div class="system-status-pill">
+          <span class="status-dot green"></span> Live Sync Active
+        </div>
+      </div>
+
+      <div class="density-group">
+        <h3 class="group-title">Active Telemetry</h3>
+        
+        <div id="incidents-container" class="stat-container alert-container">
+          <!-- Populated by JS -->
+          <div class="empty-state-card">
+            <div class="empty-icon">🛡️</div>
+            <h4>No Active Incidents</h4>
+            <p>Sector is currently clear. Monitoring for citizen distress signals and automated hazard alerts.</p>
+          </div>
+        </div>
+
+        <div id="teams-container" class="stat-container active-container">
+          <!-- Populated by JS -->
+          <div class="empty-state-card">
+            <div class="empty-icon">🚁</div>
+            <h4>No Rescue Units Deployed</h4>
+            <p>All emergency response squads are currently on standby at their designated staging areas.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="density-group">
+        <h3 class="group-title">Legend & Classification</h3>
+        <div class="legend-card">
+          <div class="legend-item">
+            <span class="legend-marker marker-red pulse"></span>
+            <span>Emergency Incident / Hazard Area</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-marker marker-blue"></span>
+            <span>Deployed Rescue Personnel</span>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+    <div class="map-container">
+      
+      <!-- Overlay Badges over the Map -->
+      <div class="map-overlay-top-left">
+        <div class="overlay-badge primary-badge" id="userRoleOverlay">Public Monitoring View</div>
+      </div>
+      
+      <div class="map-overlay-bottom-left">
+        <div class="overlay-badge sync-badge">
+          <span class="status-dot green"></span> Connected to NDRCS Mainframe
+        </div>
+        <div class="overlay-badge time-badge" id="lastUpdatedOverlay">Last Updated: Syncing...</div>
+      </div>
+
+      <div id="ndrcs-map"></div>
+      
+      <!-- Mobile Sidebar Toggle -->
+      <button id="mobileSidebarToggle" class="mobile-toggle-btn">
+        📊 View Operations Panel
+      </button>
+
+    </div>
+
+  </main>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  
+  <!-- Local JS -->
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/map.js"></script>
+</body>
+</html>

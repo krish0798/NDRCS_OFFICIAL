@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Citizen Profile - NDRCS</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/citizen-profile.css">
+</head>
+<body class="citizen-page">
+
+  <nav class="ndrcs-nav">
+    <div class="brand-container">
+      <div class="brand-logo">🏛️</div>
+      <div class="brand-title">NDRCS</div>
+    </div>
+    
+    <div class="mobile-menu-btn" id="mobileMenuBtn">☰</div>
+
+    <div class="nav-links" id="navLinks">
+      <a href="citizen-home.html">Home</a>
+      <a href="citizen-profile.html" class="active">Profile & History</a>
+      <a href="report-disaster.html" style="color: var(--alert-red); font-weight: 700;">Report Incident</a>
+      <button id="logoutBtn" class="btn btn-outline" style="color: white; border-color: white; padding: 0.4rem 1rem;">Logout</button>
+    </div>
+  </nav>
+
+  <main class="profile-container">
+    
+    <div class="profile-header">
+      <h1>Citizen Profile</h1>
+      <p>Verified Information and Incident History</p>
+    </div>
+
+    <div id="alertBox" class="alert hidden"></div>
+
+    <div class="profile-layout">
+      
+      <!-- User Details Card -->
+      <section class="profile-card">
+        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <h3 style="margin: 0;">Personal Details</h3>
+            <span class="badge blue" id="roleBadge">CITIZEN</span>
+          </div>
+          <div style="display: flex; gap: 5px;">
+            <button id="editProfileBtn" class="btn btn-outline" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Edit</button>
+            <button id="saveProfileBtn" class="btn btn-primary hidden" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">Save</button>
+          </div>
+        </div>
+        
+        <div class="details-grid" id="profileDetails">
+          <div class="detail-item">
+            <span class="detail-label">Full Name</span>
+            <input type="text" id="profNameInput" class="form-control hidden" style="margin-top: 5px; padding: 0.4rem; font-size: 0.9rem;">
+            <span class="detail-value" id="profName">Loading...</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">User ID</span>
+            <span class="detail-value" id="profUserId">Loading...</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Email</span>
+            <span class="detail-value" id="profEmail">Loading...</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Phone Number</span>
+            <input type="text" id="profPhoneInput" class="form-control hidden" style="margin-top: 5px; padding: 0.4rem; font-size: 0.9rem;">
+            <span class="detail-value" id="profPhone">Loading...</span>
+          </div>
+          <div class="detail-item full-width">
+            <span class="detail-label">Registered Address</span>
+            <textarea id="profAddressInput" class="form-control hidden" rows="2" style="margin-top: 5px; padding: 0.4rem; font-size: 0.9rem;"></textarea>
+            <span class="detail-value" id="profAddress">Loading...</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats Card -->
+      <section class="stats-card">
+        <div class="stat-circle">
+          <span id="totalReports">0</span>
+          <label>Total Reports Filed</label>
+        </div>
+        <p class="stat-note">Your verified reports help NDRCS allocate emergency resources effectively.</p>
+        <a href="report-disaster.html" class="btn btn-danger w-100" style="margin-top: 1rem;">File New Report</a>
+      </section>
+
+    </div>
+
+    <!-- History Sequence -->
+    <section class="history-section">
+      <div class="section-title-wrapper">
+        <h2>Report History</h2>
+      </div>
+
+      <div id="historyContainer" class="history-container">
+        <!-- Injected by JS -->
+        <div class="empty-history" id="emptyHistory" style="display: none;">
+          <div class="empty-icon">📁</div>
+          <h4>No Reports Filed</h4>
+          <p>You have not submitted any incident reports matching your profile.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p><strong>National Disaster Response Control System (NDRCS)</strong></p>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/citizen-profile.js"></script>
+</body>
+</html>

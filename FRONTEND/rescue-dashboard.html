@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Field Ops - NDRCS Rescue</title>
+  
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/rescue-dashboard.css">
+</head>
+<body class="rescue-page-body">
+
+  <nav class="ndrcs-nav rescue-nav">
+    <div class="brand-container">
+      <div class="brand-logo">🚁</div>
+      <div class="brand-text">
+        <div class="brand-title">NDRCS <span class="nav-span">Field Unit</span></div>
+      </div>
+    </div>
+    
+    <div class="nav-links">
+      <button id="sessionEndBtn" class="btn btn-outline btn-sm" style="color: var(--warning-orange); border-color: var(--warning-orange); margin-right: 10px;">Go Offline</button>
+      <button id="logoutBtn" class="btn btn-outline btn-sm">Sign Out</button>
+    </div>
+  </nav>
+
+  <!-- Mission Status Strip -->
+  <div class="mission-status-strip" id="missionStatusStrip">
+    <div class="status-indicator">
+      <span class="pulse-dot grey" id="statusDot"></span>
+      <span id="missionText">AWAITING ORDERS</span>
+    </div>
+    <div class="time-stamp" id="syncStamp">--:--</div>
+  </div>
+
+  <main class="rescue-layout">
+
+    <!-- Compact Field Map -->
+    <section class="field-map-container">
+      <div id="rescueMap" class="rescue-map"></div>
+      
+      <button id="updateLocationBtn" class="floating-action-btn">
+        📍 Live Position Update
+      </button>
+      <button id="toggleTrackingBtn" class="floating-action-btn" style="bottom: 70px; background-color: #ef5350; color: white;">
+        ⏹ Stop Live Tracking
+      </button>
+    </section>
+
+    <div class="scrollable-content">
+
+      <div id="alertBox" class="alert hidden" style="margin: 1rem; font-size: 0.85rem;"></div>
+
+      <!-- Quick Actions -->
+      <section class="quick-actions-panel">
+        <button class="action-btn btn-ack" onclick="window.sendQuickStatus('Message Received')">Msg Received</button>
+        <button class="action-btn btn-enroute" onclick="window.sendQuickStatus('Team Dispatched')">Dispatched</button>
+        <button class="action-btn btn-emergency" onclick="window.sendQuickStatus('Need Backup')">Backup Req.</button>
+        <button class="action-btn btn-complete" onclick="window.completeMission()">Completed</button>
+      </section>
+
+      <!-- Secure Comms Panels -->
+      <section class="comms-panel">
+        
+        <div class="panel-header">CONTROL DIRECTIVES</div>
+        <div class="inbox-list" id="inboxList">
+          <div class="empty-inbox">No active directives.</div>
+        </div>
+
+        <div class="panel-header" style="margin-top: 1rem;">CUSTOM TRANSMISSION</div>
+        <div class="transmit-form">
+          <form id="rescueTransmitForm">
+            <textarea id="transmissionBody" class="mobile-input" rows="2" placeholder="Enter status update..." required></textarea>
+            <button type="submit" class="btn btn-primary w-100 mt-2">TRANSMIT TO CONTROL</button>
+          </form>
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/rescue-dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Citizen Dashboard - NDRCS</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/citizen-home.css">
+</head>
+<body class="citizen-page">
+
+  <div class="emergency-strip">
+    NATIONAL EMERGENCY HELPLINE: <span>112</span>
+  </div>
+  
+  <nav class="ndrcs-nav">
+    <div class="brand-container">
+      <div class="brand-logo">🏛️</div>
+      <div class="brand-text">
+        <div class="brand-title">NDRCS</div>
+        <div class="brand-subtitle">Citizen Portal</div>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu Toggle -->
+    <div class="mobile-menu-btn" id="mobileMenuBtn">☰</div>
+
+    <div class="nav-links" id="navLinks">
+      <a href="citizen-home.html" class="active">Home</a>
+      <a href="citizen-profile.html">Profile & History</a>
+      <a href="report-disaster.html" style="color: var(--alert-red); font-weight: 700;">Report Incident</a>
+      <button id="logoutBtn" class="btn btn-outline" style="color: white; border-color: white; padding: 0.4rem 1rem;">Logout</button>
+    </div>
+  </nav>
+
+  <main class="dashboard-container">
+    
+    <header class="dashboard-header">
+      <h1 id="welcomeHeader">Welcome to the NDRCS Citizen Portal</h1>
+      <p class="text-muted">Stay informed, prepared, and ready to assist emergency services.</p>
+    </header>
+
+    <!-- Quick Actions -->
+    <section class="quick-actions-grid">
+      <a href="report-disaster.html" class="action-card urgent-action">
+        <div class="action-icon">🚨</div>
+        <h3>Report an Emergency</h3>
+        <p>Immediately notify control rooms of critical incidents in your area.</p>
+      </a>
+      
+      <a href="citizen-profile.html" class="action-card standard-action">
+        <div class="action-icon">👤</div>
+        <h3>View My Profile</h3>
+        <p>Review your submitted reports and manage personal information.</p>
+      </a>
+
+      <a href="map.html" class="action-card info-action">
+        <div class="action-icon">📍</div>
+        <h3>Live Operations Map</h3>
+        <p>View active incidents and dispatched rescue teams nationwide.</p>
+      </a>
+    </section>
+
+    <!-- Notices & Guidelines -->
+    <div class="content-split-layout">
+      
+      <!-- Public Safety Announcements -->
+      <section class="notices-section">
+        <h2 class="section-title">Official Announcements</h2>
+        
+        <div class="notice-card critical-notice">
+          <div class="notice-header">
+            <span class="badge red">URGENT</span>
+            <span class="date">Oct 24, 2026</span>
+          </div>
+          <h4>Cyclonic Storm Alert: Bay of Bengal</h4>
+          <p>Citizens in coastal districts are advised to secure loose objects and stay indoors. NDRF teams have been pre-deployed to high-risk zones.</p>
+        </div>
+
+        <div class="notice-card">
+          <div class="notice-header">
+            <span class="badge blue">ADVISORY</span>
+            <span class="date">Oct 18, 2026</span>
+          </div>
+          <h4>System Maintenance Completed</h4>
+          <p>The NDRCS central mainframe has successfully updated routing algorithms for faster assignment dispatching.</p>
+        </div>
+      </section>
+
+      <!-- Preparedness Guidelines -->
+      <section class="guidelines-section">
+        <h2 class="section-title">Preparedness Directives</h2>
+        
+        <ul class="guideline-list">
+          <li>
+            <strong>1. Emergency Go-Bag</strong>
+            Keep a bag packed with first aid, a flashlight, batteries, non-perishable food, and essential documents.
+          </li>
+          <li>
+            <strong>2. Know Your Sector</strong>
+            Familiarize yourself with the evacuation routes and designated safe zones in your municipality.
+          </li>
+          <li>
+            <strong>3. Accurate Reporting</strong>
+            When reporting an incident, ensure precise GPS latitude/longitude is captured for rapid response targeting.
+          </li>
+          <li>
+            <strong>4. Trust Official Sources</strong>
+            Rely purely on this portal or verified government broadcasts. Avoid spreading unverified information on social platforms.
+          </li>
+        </ul>
+        
+        <div style="text-align: center; margin-top: 1.5rem;">
+           <a href="docs/ndrcs-user-guidelines.pdf" target="_blank" class="btn btn-outline">Download Full Guidelines</a>
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <p><strong>National Disaster Response Control System (NDRCS)</strong></p>
+    <p>Operated by the Central Emergency Management Authority.</p>
+  </footer>
+
+  <script src="js/auth.js"></script>
+  <script src="js/citizen-home.js"></script>
+</body>
+</html>
