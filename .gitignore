@@ -1,1 +1,21 @@
 .vscode/
+.netlify/
+
+# Secrets
+**/.env
+**/application-local.properties
+
+# Java / Spring Boot Build Folders
+**/target/
+**/.mvn/
+**/mvnw
+**/mvnw.cmd
+**/*.jar
+**/*.war
+
+# Logs and Crash Files
+*.log
+hs_err_pid*
+
+# OS Files
+.DS_Store

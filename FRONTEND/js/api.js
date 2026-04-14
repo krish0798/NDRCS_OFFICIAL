@@ -1,12 +1,12 @@
 // FRONTEND/js/api.js - Core API and fetch utilities
-const API_BASE_URL = 'http://localhost:8080';
+const API_BASE_URL = 'https://ndrcs-backend-production.up.railway.app';
 
 /**
  * Perform a generic fetch wrapper
  */
 async function fetchApi(endpoint, options = {}) {
   const url = `${API_BASE_URL}${endpoint}`;
-  
+
   const headers = {
     'Content-Type': 'application/json',
     ...options.headers,
@@ -24,7 +24,7 @@ async function fetchApi(endpoint, options = {}) {
     const data = isJson ? await response.json() : await response.text();
 
     if (!response.ok) {
-        throw new Error((data && data.message) || response.statusText);
+      throw new Error((data && data.message) || response.statusText);
     }
 
     // Backend returns 200 OK with error strings sometimes instead of 4xx
