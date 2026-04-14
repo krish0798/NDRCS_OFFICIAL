@@ -116,4 +116,4 @@ To the incredible future contributors, professors, and reviewers evaluating this
 
 **Happy Coding! - Krish Jaiswar**
 
-*Architecture flowcharts and project scopes are attached sequentially in the `PROJECT_DOCS` folder.*
+*Architecture flowcharts and project scopes are attached sequentially in the `PROJECT_DOCS` folder.* 
